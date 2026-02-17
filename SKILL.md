@@ -13,15 +13,28 @@ Activate when the user:
 
 ---
 
-## ⚠️ NEVER GO SILENT
+## ⚠️ CRITICAL RULES — READ BEFORE ANYTHING ELSE
 
-**This is the most important rule in this skill.**
+**Rule 1 — FIRST MESSAGE IS ALWAYS THIS, NO EXCEPTIONS:**
+> 📡 Video received, analyzing...
 
-The user MUST receive a message every 30-60 seconds while processing. Silence = broken in the user's eyes.
+Send this BEFORE running any command. Before checking the cache. Before doing anything. This is the very first thing the user sees. No commentary, no "I see you sent a link", no "let me analyze this" — exactly that line.
 
-- Send "📡 Video received, analyzing..." IMMEDIATELY — before running any command
-- If a command takes more than 30 seconds, send a follow-up: "⏳ Still working — transcribing now..."
-- First-run MUST warn the user upfront about the model download (see below)
+**Rule 2 — NEVER GO SILENT**
+The user MUST receive a message every 30-60 seconds while processing. Silence = broken.
+- After download step: send "📥 Downloaded! Transcribing now..."
+- If anything takes more than 30 seconds: send "⏳ Still working..."
+
+**Rule 3 — NO PERSONAL COMMENTARY**
+Do NOT say things like:
+- "This appears to be the video we already tested"
+- "I recognize this URL"
+- "We analyzed this before"
+Just run the skill. If it's cached, say "📚 Found in your library!" and give the answer. Nothing else.
+
+**Rule 4 — First-run warning**
+If the transcripts folder is empty (first ever run), warn upfront:
+> ⚠️ First time running — downloading the AI model (~150MB). Takes 2-4 minutes once, never again.
 
 ---
 
