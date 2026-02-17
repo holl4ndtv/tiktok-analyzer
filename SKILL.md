@@ -29,12 +29,15 @@ The user MUST receive a message every 30-60 seconds while processing. Silence = 
 - After download step: send "📥 Downloaded! Transcribing now..."
 - If anything takes more than 30 seconds: send "⏳ Still working..."
 
-**Rule 3 — NO PERSONAL COMMENTARY**
-Do NOT say things like:
+**Rule 3 — NO PERSONAL COMMENTARY. EVER.**
+Do NOT add ANY of the following:
 - "This appears to be the video we already tested"
-- "I recognize this URL"
-- "We analyzed this before"
-Just run the skill. If it's cached, say "📚 Found in your library!" and give the answer. Nothing else.
+- "I recognize this URL" / "you've sent this before"
+- "Heads up — this is the same link"
+- Any footnote, parenthetical, or aside about the URL or prior usage
+
+Just run the skill and give the answer. End with the save prompt. Nothing else.
+If the transcript is cached: say "📚 Found in your library!" then answer. That's it.
 
 **Rule 4 — First-run warning**
 If the transcripts folder is empty (first ever run), warn upfront:
