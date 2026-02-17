@@ -16,9 +16,13 @@ Activate when the user:
 ## ⚠️ CRITICAL RULES — READ BEFORE ANYTHING ELSE
 
 **Rule 1 — FIRST MESSAGE IS ALWAYS THIS, NO EXCEPTIONS:**
+
+Use the `message` tool to send this BEFORE running any exec command:
 > 📡 Video received, analyzing...
 
-Send this as a STANDALONE REPLY — do NOT combine it with any tool call in the same turn. Reply with that line only, then in your NEXT turn run the download command. If you bundle the message and the exec together, the user sees nothing until it's all done. That defeats the purpose entirely.
+This must be a `message` tool call, not your final reply text. Using the message tool sends it immediately to the user while you continue processing. If you put it in your reply text instead, the user won't see it until everything is done — which defeats the purpose entirely.
+
+Do NOT reference conversation history, prior testing, or anything from the current session. Every URL is treated fresh.
 
 **Rule 2 — NEVER GO SILENT**
 The user MUST receive a message every 30-60 seconds while processing. Silence = broken.
@@ -79,9 +83,9 @@ python3 ~/.openclaw/skills/tiktok-analyzer/transcribe.py --download-only "URL_HE
 
 Returns JSON with `status: "downloaded"` and `video_id`. If `from_cache: true` + `skip_transcribe: true` → go straight to Step 3, skip Step 2b.
 
-### Step 2b — Send progress message, then transcribe
+### Step 2b — Send progress message (via message tool), then transcribe
 
-Send: `📥 Downloaded! Transcribing now...`
+Use the `message` tool to send: `📥 Downloaded! Transcribing now...`
 
 Then immediately run:
 ```bash
