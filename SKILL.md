@@ -18,7 +18,7 @@ Activate when the user:
 **Rule 1 — FIRST MESSAGE IS ALWAYS THIS, NO EXCEPTIONS:**
 > 📡 Video received, analyzing...
 
-Send this BEFORE running any command. Before checking the cache. Before doing anything. This is the very first thing the user sees. No commentary, no "I see you sent a link", no "let me analyze this" — exactly that line.
+Send this as a STANDALONE REPLY — do NOT combine it with any tool call in the same turn. Reply with that line only, then in your NEXT turn run the download command. If you bundle the message and the exec together, the user sees nothing until it's all done. That defeats the purpose entirely.
 
 **Rule 2 — NEVER GO SILENT**
 The user MUST receive a message every 30-60 seconds while processing. Silence = broken.
