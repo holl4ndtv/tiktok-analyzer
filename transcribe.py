@@ -107,6 +107,11 @@ def main():
     result["url"] = url
     result["video_id"] = video_id
     result["from_cache"] = False
+
+    # Save to cache so second run is instant
+    with open(cache_file, "w") as f:
+        json.dump(result, f)
+
     print(json.dumps(result))
 
 
