@@ -58,18 +58,26 @@ Send: `📡 Video received, analyzing...`
 If this looks like the first time (no cached transcripts exist), warn the user:
 > ⚠️ First time running — the AI transcription model needs to download (~150MB). This takes 2-4 minutes once and never again. Grab a coffee ☕
 
-### Step 2 — Run transcription
+### Step 2 — Download (step 1 of 2)
 
 ```bash
-python3 ~/.openclaw/skills/tiktok-analyzer/transcribe.py "URL_HERE"
+python3 ~/.openclaw/skills/tiktok-analyzer/transcribe.py --download-only "URL_HERE"
 ```
 
-> **Path note:** Use `~/.openclaw/skills/tiktok-analyzer/` — this resolves correctly on both Mac and Linux/VPS. Do NOT hardcode `/Users/...` or `/root/...`.
+Returns JSON with `status: "downloaded"` and `video_id`. If `from_cache: true` + `skip_transcribe: true` → go straight to Step 3, skip Step 2b.
 
-While this runs, if it takes more than 30 seconds send:
-> ⏳ Downloading + transcribing... almost there.
+### Step 2b — Send progress message, then transcribe
 
-The script returns JSON:
+Send: `📥 Downloaded! Transcribing now...`
+
+Then immediately run:
+```bash
+python3 ~/.openclaw/skills/tiktok-analyzer/transcribe.py --transcribe-only "VIDEO_ID"
+```
+
+Replace `VIDEO_ID` with the `video_id` from the previous step.
+
+Returns JSON:
 ```json
 {
   "transcript": "full text here...",
@@ -79,7 +87,7 @@ The script returns JSON:
 }
 ```
 
-If `from_cache: true` → say "📚 Found this in your library — instant answer!" and skip the wait messages.
+If `from_cache: true` (from Step 2) → say "📚 Found this in your library — instant answer!" and skip the wait messages.
 
 If there's an `"error"` key → relay it cleanly (never show a Python stacktrace to the user).
 
