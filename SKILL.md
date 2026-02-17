@@ -114,9 +114,11 @@ Use the transcript to answer whatever they asked. If no specific question, provi
 - **Key points / what's being taught** (bullet list)
 - **Tone / style** (educational, entertainment, story, etc.)
 
-### Step 4 — Offer to save
-Only if `from_cache: false`, ask:
+### Step 4 — Offer to save (MANDATORY if from_cache: false)
+After giving the answer, ALWAYS ask this — do not skip it:
 > 💾 Want to save this transcript so you can ask follow-up questions later without re-downloading? (yes/no)
+
+Only skip this if `from_cache: true` (already saved).
 
 If yes:
 ```bash
